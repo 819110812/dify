@@ -4,9 +4,9 @@ from typing import Optional
 
 import numpy as np
 import requests
-from huggingface_hub import HfApi, InferenceClient
+from huggingface_hub import HfApi, InferenceClient  # type: ignore
 
-from core.embedding.embedding_constant import EmbeddingInputType
+from core.entities.embedding_type import EmbeddingInputType
 from core.model_runtime.entities.common_entities import I18nObject
 from core.model_runtime.entities.model_entities import AIModelEntity, FetchFrom, ModelType, PriceType
 from core.model_runtime.entities.text_embedding_entities import EmbeddingUsage, TextEmbeddingResult
@@ -162,9 +162,9 @@ class HuggingfaceHubTextEmbeddingModel(_CommonHuggingfaceHub, TextEmbeddingModel
     @staticmethod
     def _check_endpoint_url_model_repository_name(credentials: dict, model_name: str):
         try:
-            url = f'{HUGGINGFACE_ENDPOINT_API}{credentials["huggingface_namespace"]}'
+            url = f"{HUGGINGFACE_ENDPOINT_API}{credentials['huggingface_namespace']}"
             headers = {
-                "Authorization": f'Bearer {credentials["huggingfacehub_api_token"]}',
+                "Authorization": f"Bearer {credentials['huggingfacehub_api_token']}",
                 "Content-Type": "application/json",
             }
 
